@@ -166,7 +166,11 @@
             <input type="color" id="val_btnTextColor" value="#ffffff">
         </div>
         <div class="form-group">
-            <label>Accent Color (Links, Progress Bar)</label>
+            <label>Progress Bar Background</label>
+            <input type="color" id="val_progressBarBg" value="#dddddd">
+        </div>
+        <div class="form-group">
+            <label>Accent Color (Links, Progress Bar Fill)</label>
             <input type="color" id="val_accentColor" value="#1eaf90">
         </div>
         <div class="form-group">
@@ -249,6 +253,7 @@
             --sidebar-bg: ${values.sidebarBg};
             --sidebar-h4-color: ${values.sidebarH4Color};
             --sidebar-text-color: ${values.sidebarTextColor};
+            --progress-bar-bg: ${values.progressBarBg};
             
             --border-width: ${values.borderWidth}px;
             --sidebar-radius: ${values.borderRadius}px;
@@ -427,6 +432,8 @@
         
         #action_info { display: var(--action-info-display) !important; }
         
+        #action_welcome_message_inner { background-color: transparent !important; }
+
         #can_sidebar {
             background-color: var(--sidebar-bg) !important;
             border-radius: var(--sidebar-radius) !important;
@@ -435,8 +442,14 @@
         }
         
         .action_sidebar { padding: 1rem !important; }
+        
+        #can_embed_form .action_status_tracker .action_status_status_bar,
+        .action_status_status_bar { 
+            background-color: var(--progress-bar-bg) !important; 
+            height: 20px !important; 
+        }
+
         span.action_status_status_bar-grow { background-color: var(--accent-color) !important; height: 20px !important; }
-        .action_status_status_bar { height: 20px !important; }
         .action_status_running_total { font-weight: 700 !important; }
 
         /* --- MOBILE LAYOUT OVERRIDE (SIDEBAR ORDER & MARGIN) --- */
@@ -479,6 +492,7 @@
                 sidebarTextColor: document.getElementById('val_sidebarTextColor').value,
                 btnColor: document.getElementById('val_btnColor').value,
                 btnTextColor: document.getElementById('val_btnTextColor').value,
+                progressBarBg: document.getElementById('val_progressBarBg').value,
                 accentColor: document.getElementById('val_accentColor').value,
                 borderWidth: document.getElementById('val_borderWidth').value,
                 borderRadius: document.getElementById('val_borderRadius').value,
@@ -505,8 +519,10 @@
                             <h4 style="margin-top:0">Sign the petition here</h4>
                             <p style="font-size: 14px; margin-bottom: 15px;">Enter your details below to add your name to the petition.</p>
                             <input type="submit" value="Sign Now" style="border:none; cursor:pointer; width:100%;">
-                            <div style="margin-top:20px; background:#ddd; height:20px; width:100%;" class="action_status_status_bar">
-                                <span class="action_status_status_bar-grow" style="display:block; width:50%;"></span>
+                            <div class="action_status_tracker">
+                                <div style="margin-top:20px; width:100%;" class="action_status_status_bar">
+                                    <span class="action_status_status_bar-grow" style="display:block; width:50%;"></span>
+                                </div>
                             </div>
                             <a href="#" style="display:block; margin-top:10px;" class="action_status_running_total">1,500 Signatures reached!</a>
                         </div>
@@ -532,6 +548,7 @@
                 sidebarTextColor: document.getElementById('val_sidebarTextColor').value,
                 btnColor: document.getElementById('val_btnColor').value,
                 btnTextColor: document.getElementById('val_btnTextColor').value,
+                progressBarBg: document.getElementById('val_progressBarBg').value,
                 accentColor: document.getElementById('val_accentColor').value,
                 borderWidth: document.getElementById('val_borderWidth').value,
                 borderRadius: document.getElementById('val_borderRadius').value,
