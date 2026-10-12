@@ -41,6 +41,17 @@
                 </select>
             </div>
             <div class="form-group"><label>Size (px)</label><input type="number" id="val_logoSize" value="200"></div>
+            
+            <!-- NUOVO ALLINEAMENTO LOGO -->
+            <div class="form-group">
+                <label>Logo Alignment</label>
+                <select id="val_logoAlign">
+                    <option value="left" selected>Left</option>
+                    <option value="center">Center</option>
+                    <option value="right">Right</option>
+                </select>
+            </div>
+            
             <div class="form-group"><label>Favicon URL</label><input type="text" id="val_favicon" placeholder="https://.../favicon.ico"></div>
 
             <!-- 2. COLOR -->
@@ -58,6 +69,7 @@
             <div class="form-group"><label>Main Text Color</label><input type="color" id="val_descColor" value="#333333"></div>
             <div class="form-group"><label>Sidebar Title Color (H4)</label><input type="color" id="val_sidebarH4Color" value="#000000"></div>
             <div class="form-group"><label>Sidebar Base Text</label><input type="color" id="val_sidebarTextColor" value="#333333"></div>
+            <div class="form-group"><label>Footer Background</label><input type="color" id="val_footerBg" value="#ffffff"></div>
 
             <!-- 3. TYPO -->
             <h3>Typo</h3>
@@ -161,6 +173,7 @@
             --heading-font: ${values.headingFont};
             --body-font: ${values.bodyFont};
             
+            --logo-align: ${values.logoAlign};
             --header-bg: ${values.headerBg};
             --wrapper-bg: ${values.wrapperBg};
             --btn-color: ${values.btnColor};
@@ -196,9 +209,8 @@
 
         body { font-family: var(--body-font); font-weight: 400; font-style: normal; margin: 0; }
         
-        #gen_header { padding: 20px 0; background-color: var(--header-bg); text-align: left; }
-        #gen_header img { width: ${logoWidth} !important; height: ${logoHeight} !important; max-width: 100%; display: block; margin: auto; }
-        @media (min-width: 768px) { #gen_header img { margin: 0; } }
+        #gen_header { padding: 20px 0; background-color: var(--header-bg); }
+        #gen_header img { width: ${logoWidth} !important; height: ${logoHeight} !important; max-width: 100%; display: inline-block; }
         
         .gen_wrapper { padding: 20px 20px; width: 1160px; max-width: 100%; margin: auto; box-sizing: border-box; background-color: var(--wrapper-bg); }
         
@@ -285,7 +297,7 @@
 </head>
 <body class="gen_body">
     <div id="gen_header">
-        <div class="gen_wrapper" style="text-align: left; background-color: transparent;">
+        <div class="gen_wrapper" style="text-align: var(--logo-align); background-color: transparent;">
             <img src="${values.logo}" alt="Organization Logo"/> 
             <h1 class="gen_name"></h1>
         </div>
@@ -300,7 +312,7 @@
             return `    <!-- END WIDGET -->
     </div> 
     
-    <div id="gen_footer" style="background-color: var(--header-bg); padding: 30px 20px; margin-top: 40px; text-align: center; font-family: var(--body-font); border-top: 1px solid #eaeaea; color: var(--desc-color);">
+    <div id="gen_footer" style="background-color: ${values.footerBg}; padding: 30px 20px; margin-top: 40px; text-align: center; font-family: var(--body-font); border-top: 1px solid #eaeaea; color: var(--desc-color);">
         <div class="gen_wrapper" style="padding: 0; background-color: transparent; font-size: 14px;">
             ${values.footerText}
         </div>
@@ -314,6 +326,7 @@
                 logo: document.getElementById('val_logo').value,
                 logoMode: document.getElementById('val_logoMode').value,
                 logoSize: document.getElementById('val_logoSize').value,
+                logoAlign: document.getElementById('val_logoAlign').value,
                 favicon: document.getElementById('val_favicon').value,
                 headerBg: document.getElementById('val_headerBg').value,
                 wrapperBg: document.getElementById('val_wrapperBg').value,
@@ -326,6 +339,7 @@
                 descColor: document.getElementById('val_descColor').value,
                 sidebarH4Color: document.getElementById('val_sidebarH4Color').value,
                 sidebarTextColor: document.getElementById('val_sidebarTextColor').value,
+                footerBg: document.getElementById('val_footerBg').value,
                 fontImport: document.getElementById('val_fontImport').value,
                 headingFont: document.getElementById('val_headingFont').value,
                 bodyFont: document.getElementById('val_bodyFont').value,
