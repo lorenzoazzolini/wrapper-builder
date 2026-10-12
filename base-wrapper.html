@@ -4,69 +4,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base Wrapper - Generator</title>
-    <!-- Richiama il CSS Condiviso -->
+    <title>Wrapper Generator</title>
+    <!-- Richiama il CSS Condiviso che abbiamo creato prima -->
     <link rel="stylesheet" href="assets/ui-style.css">
+    <style>
+        /* Aggiunte specifiche per la nuova UI della sidebar */
+        .copy-buttons { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; margin-bottom: 20px; }
+        .copy-buttons button { margin: 0; }
+        .footer-btn { background-color: #6c757d; }
+        .footer-btn:hover { background-color: #5a6268; }
+        .input-row { display: flex; gap: 10px; align-items: center; }
+        .input-row input { flex: 1; }
+    </style>
 </head>
 <body>
 
     <!-- TOP NAVIGATION -->
     <div class="top-nav">
-        <a href="index.html" class="brand">KAS DIGITAL WRAPPERS</a>
+        <a href="index.html" class="brand">WRAPPER GENERATOR</a>
         <a href="index.html" class="nav-link">Templates Gallery</a>
     </div>
 
     <div class="app-main">
-        <!-- CONTROL PANEL (Da ristrutturare in futuro, per ora manteniamo gli input) -->
+        <!-- CONTROL PANEL -->
         <div class="sidebar">
             <h2>Base Wrapper</h2>
             
-            <h3>Header & Background</h3>
+            <!-- 1. LOGO + FAVICON -->
+            <h3>Logo + Favicon</h3>
             <div class="form-group">
                 <label>Logo URL</label>
                 <input type="text" id="val_logo" value="https://via.placeholder.com/200x75.png?text=Your+Logo+Here">
             </div>
             <div class="form-group">
-                <label>Header Background</label>
-                <input type="color" id="val_headerBg" value="#ffffff">
+                <label>Logo Sizing Mode</label>
+                <select id="val_logoMode">
+                    <option value="width">Set Width (Height auto)</option>
+                    <option value="height">Set Height (Width auto)</option>
+                </select>
             </div>
             <div class="form-group">
-                <label>Main Background (gen_wrapper)</label>
-                <input type="color" id="val_wrapperBg" value="#ffffff">
+                <label>Size (px)</label>
+                <input type="number" id="val_logoSize" value="200">
+            </div>
+            <div class="form-group">
+                <label>Favicon URL</label>
+                <input type="text" id="val_favicon" placeholder="https://.../favicon.ico">
             </div>
 
-            <!-- NUOVO SISTEMA FONT COPIA/INCOLLA -->
-            <h3>Typography (Copy/Paste)</h3>
-            <div class="form-group">
-                <label>Font Import HTML (Google, Typekit, etc.)</label>
-                <textarea id="val_fontImport" rows="3" placeholder="Paste <link> or <style>@import...</style> here"><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet"></textarea>
-            </div>
-            <div class="form-group">
-                <label>Heading Font-Family Rule</label>
-                <input type="text" id="val_headingFont" value="'Montserrat', sans-serif">
-            </div>
-            <div class="form-group">
-                <label>Body Font-Family Rule</label>
-                <input type="text" id="val_bodyFont" value="'Roboto', sans-serif">
-            </div>
+            <!-- 2. COLOR -->
+            <h3>Color</h3>
+            <div class="form-group"><label>Header Background</label><input type="color" id="val_headerBg" value="#ffffff"></div>
+            <div class="form-group"><label>Gen Wrapper Color</label><input type="color" id="val_wrapperBg" value="#ffffff"></div>
+            <div class="form-group"><label>Sidebar Background</label><input type="color" id="val_sidebarBg" value="#ffffff"></div>
+            <div class="form-group"><label>Progress Bar Background</label><input type="color" id="val_progressBarBg" value="#dddddd"></div>
+            <div class="form-group"><label>Accent Color</label><input type="color" id="val_accentColor" value="#1eaf90"></div>
+            <div class="form-group"><label>Button Background</label><input type="color" id="val_btnColor" value="#ff0000"></div>
+            <div class="form-group"><label>Button Text Color</label><input type="color" id="val_btnTextColor" value="#ffffff"></div>
 
-            <!-- Colori Testo -->
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="val_showTitle" checked>
-                <label>Show Petition Title</label>
-            </div>
+            <!-- 3. TYPO -->
+            <h3>Typo</h3>
             <div class="form-group">
-                <label>Title Color</label>
-                <input type="color" id="val_titleColor" value="#000000">
+                <label>Font Import HTML (Google, Typekit...)</label>
+                <textarea id="val_fontImport" rows="2" placeholder="Paste <link> or <style>..."><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet"></textarea>
             </div>
-            <div class="form-group">
-                <label>Body Text Color</label>
-                <input type="color" id="val_descColor" value="#333333">
-            </div>
+            <div class="form-group"><label>Heading + Button Font Rule</label><input type="text" id="val_headingFont" value="'Montserrat', sans-serif"></div>
+            <div class="form-group"><label>Body Font Rule</label><input type="text" id="val_bodyFont" value="'Roboto', sans-serif"></div>
+            
+            <div class="form-group checkbox-group"><input type="checkbox" id="val_titleUppercase"><label>Title Uppercase</label></div>
+            <div class="form-group checkbox-group"><input type="checkbox" id="val_titleBold" checked><label>Title Bold</label></div>
+            <div class="form-group checkbox-group"><input type="checkbox" id="val_btnUppercase"><label>Button Uppercase</label></div>
+            <div class="form-group checkbox-group"><input type="checkbox" id="val_btnBold" checked><label>Button Bold Text</label></div>
 
-            <h3>Sidebar & Form</h3>
+            <!-- 4. SHAPE / BORDER -->
+            <h3>Shape / Border</h3>
+            <div class="form-group"><label>Sidebar Radius (px)</label><input type="number" id="val_sidebarRadius" value="12"></div>
+            <div class="form-group"><label>Button Radius (px)</label><input type="number" id="val_btnRadius" value="4"></div>
+            <div class="form-group"><label>Progress Bar Radius (px)</label><input type="number" id="val_progressRadius" value="4"></div>
+            <div class="form-group checkbox-group"><input type="checkbox" id="val_shadow" checked><label>Show Sidebar Shadow</label></div>
+            <div class="form-group"><label>Bottom Border Thickness (px)</label><input type="number" id="val_borderWidth" value="10"></div>
+
+            <!-- 5. LAYOUT -->
+            <h3>Layout</h3>
             <div class="form-group">
                 <label>Mobile Form Position</label>
                 <select id="val_mobileSidebarPos">
@@ -75,30 +94,31 @@
                 </select>
             </div>
             <div class="form-group checkbox-group">
-                <input type="checkbox" id="val_showH4" checked>
-                <label>Show Form Title (H4)</label>
-            </div>
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="val_showInfo">
-                <label>Show Action Info</label>
-            </div>
-            
-            <div class="form-group"><label>Sidebar Background</label><input type="color" id="val_sidebarBg" value="#ffffff"></div>
-            <div class="form-group"><label>Sidebar Title Color (H4)</label><input type="color" id="val_sidebarH4Color" value="#000000"></div>
-            <div class="form-group"><label>Sidebar Base Text</label><input type="color" id="val_sidebarTextColor" value="#333333"></div>
-            <div class="form-group"><label>Button Background</label><input type="color" id="val_btnColor" value="#ff0000"></div>
-            <div class="form-group"><label>Button Text Color</label><input type="color" id="val_btnTextColor" value="#ffffff"></div>
-            <div class="form-group"><label>Progress Bar Background</label><input type="color" id="val_progressBarBg" value="#dddddd"></div>
-            <div class="form-group"><label>Accent Color (Links, Fill)</label><input type="color" id="val_accentColor" value="#1eaf90"></div>
-            <div class="form-group"><label>Bottom Border Thickness (px)</label><input type="number" id="val_borderWidth" value="10"></div>
-            <div class="form-group"><label>Corner Radius (px)</label><input type="number" id="val_borderRadius" value="12"></div>
-            
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="val_shadow" checked>
-                <label>Show Sidebar Shadow</label>
+                <input type="checkbox" id="val_showMobileBtn">
+                <label>Mobile Button "Go to sign"</label>
             </div>
 
-            <button id="btnCopy">📋 Copy Code</button>
+            <!-- 6. HIDE / SHOW -->
+            <h3>Hide / Show</h3>
+            <!-- Manteniamo la logica visiva "Show" per i controlli come concordato, per non avere doppie negazioni -->
+            <div class="form-group checkbox-group"><input type="checkbox" id="val_showTitle" checked><label>Show Petition Title</label></div>
+            <div class="form-group checkbox-group"><input type="checkbox" id="val_showH4" checked><label>Show Form Title (H4)</label></div>
+            <div class="form-group checkbox-group"><input type="checkbox" id="val_showInfo"><label>Show Action Info</label></div>
+            <div class="form-group checkbox-group"><input type="checkbox" id="val_showSosha"><label>Add Sosha Tracking Link</label></div>
+            
+            <hr style="width:100%; border:0; border-top:1px solid #ccc; margin: 10px 0;">
+            
+            <div class="form-group checkbox-group"><input type="checkbox" id="val_showFooter" checked><label>Show Footer</label></div>
+            <div class="form-group" id="footerTextGroup">
+                <label>Footer Text / HTML</label>
+                <textarea id="val_footerText" rows="3" placeholder="Enter footer content...">© 2026 Your Organization. All rights reserved.</textarea>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="copy-buttons">
+                <button id="btnCopyHeader">📋 Copy HEADER Code</button>
+                <button id="btnCopyFooter" class="footer-btn">📋 Copy FOOTER Code</button>
+            </div>
         </div>
 
         <!-- PREVIEW AREA -->
@@ -112,24 +132,50 @@
     </div>
 
     <!-- WRAPPER SPECIFIC LOGIC -->
-    <!-- Richiama lo script condiviso -->
     <script src="assets/common.js"></script>
     <script>
-        function generateWrapperCode(values) {
+        // Funzione per generare il codice dell'HEADER (Tutto ciò che va prima del form di Action Network)
+        function generateHeaderCode(values) {
+            
+            // --- LOGICHE CONDIZIONALI ---
+            const faviconHtml = values.favicon ? `<link rel="icon" href="${values.favicon}">` : '';
+            const soshaHtml = values.showSosha ? `<script src="https://app.sosha.ai/tracker.min.js?platform=actionnetwork" data-reload="true"><\/script>` : '';
+            
+            // Sizing Logo
+            const logoWidth = values.logoMode === 'width' ? values.logoSize + 'px' : 'auto';
+            const logoHeight = values.logoMode === 'height' ? values.logoSize + 'px' : 'auto';
+
+            // Visualizzazioni Base
             const actionInfoDisplay = values.showInfo ? 'block' : 'none';
             const titleDisplay = values.showTitle ? 'block' : 'none';
             const h4Display = values.showH4 ? 'block' : 'none';
             const shadowValue = values.shadow ? '0 2px 6px 0 rgba(0, 0, 0, 0.1), 0 2px 6px 0 rgba(0, 0, 0, 0.1)' : 'none';
+            
+            // Layout Mobile
             const mobileSidebarOrder = values.mobileSidebarPos === 'top' ? '-1' : '99';
             const mobileSidebarMargin = values.mobileSidebarPos === 'top' ? '50px' : '0px';
 
+            // Tipografia Avanzata
+            const titleTransform = values.titleUppercase ? 'uppercase' : 'none';
+            const titleWeight = values.titleBold ? '700' : 'normal';
+            const btnTransform = values.btnUppercase ? 'uppercase' : 'none';
+            const btnWeight = values.btnBold ? '700' : 'normal';
+
+            // Pulsante Go-To-Sign (Mobile)
+            const mobileBtnHtml = values.showMobileBtn ? `
+    <div class="mobile-sign-wrap">
+        <a href="#can_sidebar" class="mobile-sign-btn">Sign the Petition</a>
+    </div>` : '';
+
+            // --- COSTRUZIONE STRINGA HEADER ---
             return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    ${faviconHtml}${soshaHtml}
     
-    <!-- FONT IMPORT (User Pasted) -->
+    <!-- FONT IMPORT -->
     ${values.fontImport}
     
     <style type="text/css">
@@ -142,20 +188,24 @@
             --btn-color: ${values.btnColor};
             --btn-text-color: ${values.btnTextColor};
             --accent-color: ${values.accentColor};
+            
             --sidebar-bg: ${values.sidebarBg};
-            --sidebar-h4-color: ${values.sidebarH4Color};
-            --sidebar-text-color: ${values.sidebarTextColor};
             --progress-bar-bg: ${values.progressBarBg};
+            
+            --sidebar-radius: ${values.sidebarRadius}px;
+            --btn-radius: ${values.btnRadius}px;
+            --progress-radius: ${values.progressRadius}px;
             --border-width: ${values.borderWidth}px;
-            --sidebar-radius: ${values.borderRadius}px;
             --sidebar-shadow: ${shadowValue};
             
+            --title-transform: ${titleTransform};
+            --title-weight: ${titleWeight};
+            --btn-transform: ${btnTransform};
+            --btn-weight: ${btnWeight};
+
             --action-info-display: ${actionInfoDisplay};
             --title-display: ${titleDisplay};
             --h4-display: ${h4Display};
-            
-            --title-color: ${values.titleColor};
-            --desc-color: ${values.descColor};
 
             --sidebar-mobile-order: ${mobileSidebarOrder};
             --sidebar-mobile-margin: ${mobileSidebarMargin};
@@ -163,186 +213,51 @@
 
         body { font-family: var(--body-font); font-weight: 400; font-style: normal; margin: 0; }
         
-        #gen_header { padding: 0; background-color: var(--header-bg); text-align: left; }
-        #gen_header img { width: 100%; max-width: 247px; }
+        #gen_header { padding: 20px 0; background-color: var(--header-bg); text-align: left; }
+        #gen_header img { width: ${logoWidth} !important; height:${logoHeight} !important; max-width: 100%; display: block; margin: auto; }
+        
+        @media (min-width: 768px) { #gen_header img { margin: 0; } }
+        
         .gen_wrapper { padding: 20px 20px; width: 1160px; max-width: 100%; margin: auto; box-sizing: border-box; background-color: var(--wrapper-bg); }
         
+        /* BOTTONI FORM */
         .gen_wrapper #can_embed_form input[type="submit"], .can_embed-html #can_embed_form input[type="submit"],
         .gen_wrapper #can_embed_form .button, .can_embed-html #can_embed_form .button,
         .gen_wrapper #donate_auto_modal input[type="submit"], .can_embed-html #donate_auto_modal input[type="submit"],
         .gen_wrapper #donate_auto_modal .button, .can_embed-html #donate_auto_modal .button {
-            font-family: var(--heading-font) !important; background-color: var(--btn-color); color: var(--btn-text-color) !important;
-            padding: 10px 15px !important; font-size: 18px !important; font-weight: 700 !important;
+            font-family: var(--heading-font) !important; background-color: var(--btn-color) !important; color: var(--btn-text-color) !important;
+            padding: 12px 15px !important; font-size: 18px !important; 
+            font-weight: var(--btn-weight) !important; text-transform: var(--btn-transform) !important;
+            border-radius: var(--btn-radius) !important; border: none !important;
         }
         
         .gen_wrapper #can_embed_form input[type="submit"]:hover, .can_embed-html #can_embed_form input[type="submit"]:hover,
-        .gen_wrapper #can_embed_form .button:hover, .can_embed-html #can_embed_form .button:hover,
-        .gen_wrapper #donate_auto_modal input[type="submit"]:hover, .can_embed-html #donate_auto_modal input[type="submit"]:hover,
-        .gen_wrapper #donate_auto_modal .button:hover, .can_embed-html #donate_auto_modal .button:hover { background-color: var(--btn-color); opacity: .7; }
+        .gen_wrapper #can_embed_form .button:hover, .can_embed-html #can_embed_form .button:hover { opacity: .8; }
         
+        /* LINK E COLORI ACCENTO */
         .gen_wrapper #can_embed_form .action_status_running_total, .can_embed-html #can_embed_form .action_status_running_total,
         .gen_wrapper .gen_name, .gen_wrapper a, #can_fundraising_widget a, .ticketed_event a { color: var(--accent-color); text-decoration: none; }
-        .gen_wrapper a:hover, #can_fundraising_widget a:hover, .ticketed_event a:hover { color: var(--accent-color); opacity: .7; text-decoration: none; }
+        .gen_wrapper a:hover, #can_fundraising_widget a:hover, .ticketed_event a:hover { opacity: .7; }
 
+        /* LAYOUT COLONNE ACTION NETWORK */
         .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix, .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix { align-items: flex-start; display: flex; flex-flow: row wrap; }
-        .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix .can_thank_you-block, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix .can_thank_you-block, .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix .can_thank_you-block,
-        .gen_body > .gen_wrapper.layout--reverse #can_embed_form.can_768 > .clearfix .can_thank_you-block, .gen_body > .gen_wrapper.layout--equal #can_embed_form.can_768 > .clearfix .can_thank_you-block, .gen_body > .gen_wrapper.layout--full #can_embed_form.can_768 > .clearfix .can_thank_you-block { width: 100%; }
-        .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix .can_thank_you-block #referral_code_select_wrap, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix .can_thank_you-block #referral_code_select_wrap, .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix .can_thank_you-block #referral_code_select_wrap { width: 100%; }
+        .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix .can_thank_you-block, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix .can_thank_you-block, .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix .can_thank_you-block { width: 100%; }
         .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix #can_main_col #action_info .action_owner_box { float: none; margin-right: 0; width: 100%; }
 
         @media (min-width: 768px) {
             .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix, .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix { flex-flow: row nowrap; }
-            .gen_body > .gen_wrapper.layout--reverse #can_embed_form.can_thank_you_wrap > .clearfix, .gen_body > .gen_wrapper.layout--equal #can_embed_form.can_thank_you_wrap > .clearfix, .gen_body > .gen_wrapper.layout--full #can_embed_form.can_thank_you_wrap > .clearfix { flex-flow: row wrap; }
-            .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix #referral_code_select_wrap, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix #referral_code_select_wrap, .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix #referral_code_select_wrap { width: 100%; }
-            .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix .can_thank_you-block, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix .can_thank_you-block, .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix .can_thank_you-block,
-            .gen_body > .gen_wrapper.layout--reverse #can_embed_form.can_768 > .clearfix .can_thank_you-block, .gen_body > .gen_wrapper.layout--equal #can_embed_form.can_768 > .clearfix .can_thank_you-block, .gen_body > .gen_wrapper.layout--full #can_embed_form.can_768 > .clearfix .can_thank_you-block { width: 31%; }
-            .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix #can_sidebar, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix #can_sidebar, .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix #can_sidebar  { margin-left: auto; }
-            .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix #can_sidebar { width: 65%; }
-            .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix #can_main_col { width: 30%; margin-bottom: 0; }
-            .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix #can_letter_one_col #can_sidebar, .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix #can_letter_one_col #can_main_col,
-            .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix #can_letter_one_col #can_main_col, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix #can_letter_one_col #can_sidebar { width: 100%; }
-            .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix #can_sidebar { width: 48%; }
+            .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix #can_sidebar, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix #can_sidebar { margin-left: auto; width: 48%; }
             .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix #can_main_col { width: 48%; margin-bottom: 0; }
+            .can_embed #can_embed_form > .clearfix, .can_embed #can_embed_form > div > .clearfix { flex-flow: row nowrap; }
+            .can_embed #can_embed_form > .clearfix #can_sidebar { width: 48%; }
+            .can_embed #can_embed_form > .clearfix #can_main_col { width: 48%; margin-bottom: 0; }
         }
-
-        .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix #can_main_col, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix #can_main_col { width: 100%; margin-bottom: 2rem; }
-        .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix #can_sidebar, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix #can_sidebar { width: 100%; }
-        .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix { flex-flow: row wrap; }
-        .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix #can_sidebar { width: 100%; }
-        .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix #can_main_col { margin-bottom: 2rem; width: 100%; }
-        
-        .gen_body > .gen_wrapper.layout--reverse .event_campaign #can_embed_form > .clearfix, .gen_body > .gen_wrapper.layout--full .event_campaign #can_embed_form > .clearfix, .gen_body > .gen_wrapper.layout--equal .event_campaign #can_embed_form > .clearfix  { flex-flow: row wrap; }
-        .gen_body > .gen_wrapper.layout--reverse .event_campaign #can_embed_form > .clearfix .entry-title, .gen_body > .gen_wrapper.layout--full .event_campaign #can_embed_form > .clearfix .entry-title, .gen_body > .gen_wrapper.layout--equal .event_campaign #can_embed_form > .clearfix .entry-title { width: 100%; }
-        .gen_body > .gen_wrapper.layout--reverse .event_campaign #can_embed_form > .clearfix #can_sidebar, .gen_body > .gen_wrapper.layout--full .event_campaign #can_embed_form > .clearfix #can_sidebar, .gen_body > .gen_wrapper.layout--equal .event_campaign #can_embed_form > .clearfix #can_sidebar { order: 2; }
         
         .can_embed #can_embed_form > .clearfix, .can_embed #can_embed_form > div > .clearfix { align-items: flex-start; display: flex; flex-flow: row wrap; }
-        .can_embed #can_embed_form > .clearfix #can_sidebar, .can_embed #can_embed_form > div > .clearfix #can_sidebar { margin-left: auto; width: 100%; }
-        .can_embed #can_embed_form > .clearfix #can_main_col, .can_embed #can_embed_form > div > .clearfix #can_main_col { width: 100%; margin-bottom: 2rem; }
-
-        @media (min-width: 768px) {
-            .can_embed #can_embed_form > .clearfix, .can_embed #can_embed_form > div > .clearfix { flex-flow: row nowrap; }
-            .can_embed #can_embed_form > .clearfix #can_sidebar, .can_embed #can_embed_form > div > .clearfix #can_sidebar { width: 48%; }
-            .can_embed #can_embed_form > .clearfix #can_main_col, .can_embed #can_embed_form > div > .clearfix #can_main_col { width: 48%; margin-bottom: 0; }
-        }
+        .can_embed #can_embed_form > .clearfix #can_sidebar { margin-left: auto; width: 100%; }
+        .can_embed #can_embed_form > .clearfix #can_main_col { width: 100%; margin-bottom: 2rem; }
         
-        .entry-title { font-family: var(--heading-font) !important; display: var(--title-display) !important; color: var(--title-color) !important; }
-        .action_description, #can_main_col p { color: var(--desc-color) !important; }
-        #can_sidebar h4, .action_sidebar h4 { font-family: var(--heading-font) !important; display: var(--h4-display) !important; color: var(--sidebar-h4-color) !important; }
-        #can_sidebar, .action_sidebar, #can_sidebar p, #can_sidebar label { color: var(--sidebar-text-color) !important; }
-        #action_info { display: var(--action-info-display) !important; }
-        #action_welcome_message_inner { background-color: transparent !important; }
-
-        #can_sidebar { background-color: var(--sidebar-bg) !important; border-radius: var(--sidebar-radius) !important; border-bottom: solid var(--accent-color) var(--border-width) !important; box-shadow: var(--sidebar-shadow) !important; }
-        .action_sidebar { padding: 1rem !important; }
-        
-        #can_embed_form .action_status_tracker .action_status_status_bar, .action_status_status_bar { background-color: var(--progress-bar-bg) !important; height: 20px !important; }
-        span.action_status_status_bar-grow { background-color: var(--accent-color) !important; height: 20px !important; }
-        .action_status_running_total { font-weight: 700 !important; }
-
-        @media (max-width: 767px) {
-            #can_embed_form > .clearfix, #can_embed_form > div > .clearfix { display: flex !important; flex-direction: column !important; }
-            #can_sidebar { order: var(--sidebar-mobile-order) !important; margin-bottom: var(--sidebar-mobile-margin) !important; }
-        }
-    </style>
-</head>
-<body class="gen_body">
-    <div id="gen_header">
-        <div class="gen_wrapper" style="text-align: left; background-color: transparent;">
-            <img src="${values.logo}" alt="Organization Logo" style="height:75px!important; width:auto;"/> 
-            <h1 class="gen_name"></h1>
-        </div>
-    </div>
-    <div class="gen_wrapper layout--equal">
-    <!-- END TEMPLATE HEADER - START WIDGET -->`;
-        }
-
-        // Funzione chiamata da common.js ad ogni modifica degli input
-        window.updatePreview = function() {
-            const values = {
-                logo: document.getElementById('val_logo').value,
-                headerBg: document.getElementById('val_headerBg').value,
-                wrapperBg: document.getElementById('val_wrapperBg').value,
-                
-                fontImport: document.getElementById('val_fontImport').value,
-                headingFont: document.getElementById('val_headingFont').value,
-                bodyFont: document.getElementById('val_bodyFont').value,
-                
-                titleColor: document.getElementById('val_titleColor').value,
-                descColor: document.getElementById('val_descColor').value,
-                mobileSidebarPos: document.getElementById('val_mobileSidebarPos').value,
-                sidebarBg: document.getElementById('val_sidebarBg').value,
-                sidebarH4Color: document.getElementById('val_sidebarH4Color').value,
-                sidebarTextColor: document.getElementById('val_sidebarTextColor').value,
-                btnColor: document.getElementById('val_btnColor').value,
-                btnTextColor: document.getElementById('val_btnTextColor').value,
-                progressBarBg: document.getElementById('val_progressBarBg').value,
-                accentColor: document.getElementById('val_accentColor').value,
-                borderWidth: document.getElementById('val_borderWidth').value,
-                borderRadius: document.getElementById('val_borderRadius').value,
-                showInfo: document.getElementById('val_showInfo').checked,
-                showTitle: document.getElementById('val_showTitle').checked,
-                showH4: document.getElementById('val_showH4').checked,
-                shadow: document.getElementById('val_shadow').checked
-            };
-
-            const code = generateWrapperCode(values);
-            
-            const dummyForm = `
-                <div id="can_embed_form">
-                    <div class="clearfix">
-                        <div id="can_main_col">
-                            <h2 class="entry-title" style="margin-top:0;">Petition Title</h2>
-                            <div class="action_description">
-                                <p>This is the action description text. It uses the font you pasted in "Body Font-Family Rule". The title above and the form button use the "Heading Font-Family Rule".</p>
-                            </div>
-                            <div id="action_info" style="padding:10px; background:#eee; color:#333; margin-top:10px; margin-bottom:20px;">[Action Info] - Author / Sponsor text</div>
-                        </div>
-                        <div id="can_sidebar" style="padding: 20px; border: 1px solid #ddd;">
-                            <h4 style="margin-top:0">Sign the petition here</h4>
-                            <p style="font-size: 14px; margin-bottom: 15px;">Enter your details below.</p>
-                            <input type="submit" value="Sign Now" style="border:none; cursor:pointer; width:100%;">
-                            <div class="action_status_tracker">
-                                <div style="margin-top:20px; width:100%;" class="action_status_status_bar">
-                                    <span class="action_status_status_bar-grow" style="display:block; width:50%;"></span>
-                                </div>
-                            </div>
-                            <a href="#" style="display:block; margin-top:10px;" class="action_status_running_total">1,500 Signatures reached!</a>
-                        </div>
-                    </div>
-                </div>
-            </div></body></html>`;
-
-            document.getElementById('previewFrame').srcdoc = code + dummyForm;
-        }
-
-        // Funzione chiamata da common.js per il pulsante Copia
-        window.getCleanCode = function() {
-            const values = {
-                logo: document.getElementById('val_logo').value,
-                headerBg: document.getElementById('val_headerBg').value,
-                wrapperBg: document.getElementById('val_wrapperBg').value,
-                fontImport: document.getElementById('val_fontImport').value,
-                headingFont: document.getElementById('val_headingFont').value,
-                bodyFont: document.getElementById('val_bodyFont').value,
-                titleColor: document.getElementById('val_titleColor').value,
-                descColor: document.getElementById('val_descColor').value,
-                mobileSidebarPos: document.getElementById('val_mobileSidebarPos').value,
-                sidebarBg: document.getElementById('val_sidebarBg').value,
-                sidebarH4Color: document.getElementById('val_sidebarH4Color').value,
-                sidebarTextColor: document.getElementById('val_sidebarTextColor').value,
-                btnColor: document.getElementById('val_btnColor').value,
-                btnTextColor: document.getElementById('val_btnTextColor').value,
-                progressBarBg: document.getElementById('val_progressBarBg').value,
-                accentColor: document.getElementById('val_accentColor').value,
-                borderWidth: document.getElementById('val_borderWidth').value,
-                borderRadius: document.getElementById('val_borderRadius').value,
-                showInfo: document.getElementById('val_showInfo').checked,
-                showTitle: document.getElementById('val_showTitle').checked,
-                showH4: document.getElementById('val_showH4').checked,
-                shadow: document.getElementById('val_shadow').checked
-            };
-            return generateWrapperCode(values);
-        }
-    </script>
-</body>
-</html>
+        /* STILI SPECIFICI TIPOGRAFIA E DISPLAY */
+        .entry-title { 
+            font-family: var(--heading-font) !important; 
+            display: var(--title-display) !important;
