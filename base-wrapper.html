@@ -389,7 +389,6 @@
         }
 
         function getValues() {
-            // Legge il valore dell'input color (il pallino) che è tenuto in sync con il testo
             return {
                 logo: document.getElementById('val_logo').value,
                 logoMode: document.getElementById('val_logoMode').value,
@@ -466,8 +465,19 @@
             document.getElementById('previewFrame').srcdoc = headerHtml + dummyForm + footerHtml;
         }
 
-        window.getCleanCode = function() { return generateHeaderCode(getValues()); }
+        // AGGIUNTO LISTENER PER IL PULSANTE HEADER
+        document.getElementById('btnCopyHeader').addEventListener('click', function() {
+            const headerCode = generateHeaderCode(getValues());
+            navigator.clipboard.writeText(headerCode).then(() => {
+                const btn = document.getElementById('btnCopyHeader');
+                const originalText = btn.innerText;
+                btn.innerText = "✅ HEADER Copied!";
+                btn.style.background = "#10b981"; // Verde successo
+                setTimeout(() => { btn.innerText = originalText; btn.style.background = ""; }, 2000);
+            });
+        });
 
+        // LISTENER PER IL PULSANTE FOOTER
         document.getElementById('btnCopyFooter').addEventListener('click', function() {
             const footerCode = generateFooterCode(getValues());
             navigator.clipboard.writeText(footerCode).then(() => {
@@ -475,7 +485,7 @@
                 const originalText = btn.innerText;
                 btn.innerText = "✅ FOOTER Copied!";
                 btn.style.background = "#10b981"; // Verde successo
-                setTimeout(() => { btn.innerText = originalText; btn.style.background = ""; }, 2000);
+                setTimeout(() => { btn.innerText = originalText; btn.style.background = "#6b7280"; }, 2000);
             });
         });
     </script>
