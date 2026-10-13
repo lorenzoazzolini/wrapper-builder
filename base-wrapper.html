@@ -7,12 +7,6 @@
     <title>Wrapper Generator</title>
     <!-- Richiama il CSS Condiviso -->
     <link rel="stylesheet" href="assets/ui-style.css">
-    <style>
-        .copy-buttons { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; margin-bottom: 20px; }
-        .copy-buttons button { margin: 0; }
-        .footer-btn { background-color: #6c757d; }
-        .footer-btn:hover { background-color: #5a6268; }
-    </style>
 </head>
 <body>
 
@@ -25,106 +19,155 @@
     <div class="app-main">
         <!-- CONTROL PANEL -->
         <div class="sidebar">
-            <h2>Base Wrapper</h2>
+            <div class="sidebar-header">
+                <h2>Base Wrapper</h2>
+            </div>
             
             <!-- 1. LOGO + FAVICON -->
-            <h3>Logo + Favicon</h3>
-            <div class="form-group">
-                <label>Logo URL</label>
-                <input type="text" id="val_logo" value="https://via.placeholder.com/200x75.png?text=Your+Logo+Here">
-            </div>
-            <div class="form-group">
-                <label>Logo Sizing Mode</label>
-                <select id="val_logoMode">
-                    <option value="width">Set Width (Height auto)</option>
-                    <option value="height">Set Height (Width auto)</option>
-                </select>
-            </div>
-            <div class="form-group"><label>Size (px)</label><input type="number" id="val_logoSize" value="200"></div>
-            
-            <!-- NUOVO ALLINEAMENTO LOGO -->
-            <div class="form-group">
-                <label>Logo Alignment</label>
-                <select id="val_logoAlign">
-                    <option value="left" selected>Left</option>
-                    <option value="center">Center</option>
-                    <option value="right">Right</option>
-                </select>
-            </div>
-            
-            <div class="form-group"><label>Favicon URL</label><input type="text" id="val_favicon" placeholder="https://.../favicon.ico"></div>
+            <details class="section-accordion" open>
+                <summary>Logo + Favicon</summary>
+                <div class="accordion-content">
+                    <div class="form-row col-layout">
+                        <label>Logo URL</label>
+                        <div class="control"><input type="text" id="val_logo" value="https://via.placeholder.com/200x75.png?text=Your+Logo+Here"></div>
+                    </div>
+                    <div class="form-row">
+                        <label>Sizing Mode</label>
+                        <div class="control">
+                            <select id="val_logoMode">
+                                <option value="width">Set Width</option>
+                                <option value="height">Set Height</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label>Size (px)</label>
+                        <div class="control"><input type="number" id="val_logoSize" value="200"></div>
+                    </div>
+                    <div class="form-row">
+                        <label>Alignment</label>
+                        <div class="control">
+                            <select id="val_logoAlign">
+                                <option value="left" selected>Left</option>
+                                <option value="center">Center</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row col-layout">
+                        <label>Favicon URL</label>
+                        <div class="control"><input type="text" id="val_favicon" placeholder="https://.../favicon.ico"></div>
+                    </div>
+                </div>
+            </details>
 
             <!-- 2. COLOR -->
-            <h3>Color</h3>
-            <div class="form-group"><label>Header Background</label><input type="color" id="val_headerBg" value="#ffffff"></div>
-            <div class="form-group"><label>Gen Wrapper Color</label><input type="color" id="val_wrapperBg" value="#ffffff"></div>
-            <div class="form-group"><label>Sidebar Background</label><input type="color" id="val_sidebarBg" value="#ffffff"></div>
-            <div class="form-group"><label>Progress Bar Background</label><input type="color" id="val_progressBarBg" value="#dddddd"></div>
-            
-            <div class="form-group"><label>Accent Color</label><input type="color" id="val_accentColor" value="#1eaf90"></div>
-            <div class="form-group"><label>Button Background</label><input type="color" id="val_btnColor" value="#ff0000"></div>
-            <div class="form-group"><label>Button Text Color</label><input type="color" id="val_btnTextColor" value="#ffffff"></div>
-            
-            <div class="form-group"><label>Main Title Color (entry-title)</label><input type="color" id="val_titleColor" value="#000000"></div>
-            <div class="form-group"><label>Main Text Color</label><input type="color" id="val_descColor" value="#333333"></div>
-            <div class="form-group"><label>Sidebar Title Color (H4)</label><input type="color" id="val_sidebarH4Color" value="#000000"></div>
-            <div class="form-group"><label>Sidebar Base Text</label><input type="color" id="val_sidebarTextColor" value="#333333"></div>
-            <div class="form-group"><label>Footer Background</label><input type="color" id="val_footerBg" value="#ffffff"></div>
+            <details class="section-accordion">
+                <summary>Color</summary>
+                <div class="accordion-content">
+                    <div class="form-row"><label>Header Bg</label><div class="control"><div class="color-group"><input type="color" id="val_headerBg" value="#ffffff"><input type="text" id="hex_headerBg" value="#ffffff" maxlength="7"></div></div></div>
+                    <div class="form-row"><label>Wrapper Bg</label><div class="control"><div class="color-group"><input type="color" id="val_wrapperBg" value="#ffffff"><input type="text" id="hex_wrapperBg" value="#ffffff" maxlength="7"></div></div></div>
+                    <div class="form-row"><label>Sidebar Bg</label><div class="control"><div class="color-group"><input type="color" id="val_sidebarBg" value="#ffffff"><input type="text" id="hex_sidebarBg" value="#ffffff" maxlength="7"></div></div></div>
+                    <div class="form-row"><label>Progress Bar</label><div class="control"><div class="color-group"><input type="color" id="val_progressBarBg" value="#dddddd"><input type="text" id="hex_progressBarBg" value="#dddddd" maxlength="7"></div></div></div>
+                    <div class="form-row"><label>Footer Bg</label><div class="control"><div class="color-group"><input type="color" id="val_footerBg" value="#ffffff"><input type="text" id="hex_footerBg" value="#ffffff" maxlength="7"></div></div></div>
+                    
+                    <hr style="width:100%; border:0; border-top:1px solid #e5e7eb; margin: 5px 0;">
+                    
+                    <div class="form-row"><label>Accent Color</label><div class="control"><div class="color-group"><input type="color" id="val_accentColor" value="#10b981"><input type="text" id="hex_accentColor" value="#10b981" maxlength="7"></div></div></div>
+                    <div class="form-row"><label>Button Bg</label><div class="control"><div class="color-group"><input type="color" id="val_btnColor" value="#2563eb"><input type="text" id="hex_btnColor" value="#2563eb" maxlength="7"></div></div></div>
+                    <div class="form-row"><label>Button Text</label><div class="control"><div class="color-group"><input type="color" id="val_btnTextColor" value="#ffffff"><input type="text" id="hex_btnTextColor" value="#ffffff" maxlength="7"></div></div></div>
+                    
+                    <hr style="width:100%; border:0; border-top:1px solid #e5e7eb; margin: 5px 0;">
+                    
+                    <div class="form-row"><label>Main Title</label><div class="control"><div class="color-group"><input type="color" id="val_titleColor" value="#111827"><input type="text" id="hex_titleColor" value="#111827" maxlength="7"></div></div></div>
+                    <div class="form-row"><label>Body Text</label><div class="control"><div class="color-group"><input type="color" id="val_descColor" value="#4b5563"><input type="text" id="hex_descColor" value="#4b5563" maxlength="7"></div></div></div>
+                    <div class="form-row"><label>Sidebar Title</label><div class="control"><div class="color-group"><input type="color" id="val_sidebarH4Color" value="#111827"><input type="text" id="hex_sidebarH4Color" value="#111827" maxlength="7"></div></div></div>
+                    <div class="form-row"><label>Sidebar Text</label><div class="control"><div class="color-group"><input type="color" id="val_sidebarTextColor" value="#4b5563"><input type="text" id="hex_sidebarTextColor" value="#4b5563" maxlength="7"></div></div></div>
+                </div>
+            </details>
 
             <!-- 3. TYPO -->
-            <h3>Typo</h3>
-            <div class="form-group">
-                <label>Font Import HTML (Google, Typekit...)</label>
-                <textarea id="val_fontImport" rows="2" placeholder="Paste <link> or <style>..."><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet"></textarea>
-            </div>
-            <div class="form-group"><label>Heading + Button Font Rule</label><input type="text" id="val_headingFont" value="'Montserrat', sans-serif"></div>
-            <div class="form-group"><label>Body Font Rule</label><input type="text" id="val_bodyFont" value="'Roboto', sans-serif"></div>
-            
-            <div class="form-group checkbox-group"><input type="checkbox" id="val_titleUppercase"><label>Title Uppercase</label></div>
-            <div class="form-group checkbox-group"><input type="checkbox" id="val_titleBold" checked><label>Title Bold</label></div>
-            <div class="form-group checkbox-group"><input type="checkbox" id="val_btnUppercase"><label>Button Uppercase</label></div>
-            <div class="form-group checkbox-group"><input type="checkbox" id="val_btnBold" checked><label>Button Bold Text</label></div>
+            <details class="section-accordion">
+                <summary>Typo</summary>
+                <div class="accordion-content">
+                    <div class="form-row col-layout">
+                        <label>Font Import HTML (Link or Style)</label>
+                        <div class="control"><textarea id="val_fontImport" rows="3" placeholder="Paste <link> or <style>..."><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet"></textarea></div>
+                    </div>
+                    <div class="form-row col-layout">
+                        <label>Heading + Button Font Rule</label>
+                        <div class="control"><input type="text" id="val_headingFont" value="'Montserrat', sans-serif"></div>
+                    </div>
+                    <div class="form-row col-layout">
+                        <label>Body Font Rule</label>
+                        <div class="control"><input type="text" id="val_bodyFont" value="'Roboto', sans-serif"></div>
+                    </div>
+                    
+                    <hr style="width:100%; border:0; border-top:1px solid #e5e7eb; margin: 5px 0;">
+                    
+                    <div class="form-row checkbox-row"><input type="checkbox" id="val_titleUppercase"><label>Title Uppercase</label></div>
+                    <div class="form-row checkbox-row"><input type="checkbox" id="val_titleBold" checked><label>Title Bold</label></div>
+                    <div class="form-row checkbox-row"><input type="checkbox" id="val_btnUppercase"><label>Button Uppercase</label></div>
+                    <div class="form-row checkbox-row"><input type="checkbox" id="val_btnBold" checked><label>Button Bold Text</label></div>
+                </div>
+            </details>
 
             <!-- 4. SHAPE / BORDER -->
-            <h3>Shape / Border</h3>
-            <div class="form-group"><label>Sidebar Radius (px)</label><input type="number" id="val_sidebarRadius" value="12"></div>
-            <div class="form-group"><label>Button Radius (px)</label><input type="number" id="val_btnRadius" value="4"></div>
-            <div class="form-group"><label>Progress Bar Radius (px)</label><input type="number" id="val_progressRadius" value="4"></div>
-            <div class="form-group checkbox-group"><input type="checkbox" id="val_shadow" checked><label>Show Sidebar Shadow</label></div>
-            <div class="form-group"><label>Bottom Border Thickness (px)</label><input type="number" id="val_borderWidth" value="10"></div>
+            <details class="section-accordion">
+                <summary>Shape / Border</summary>
+                <div class="accordion-content">
+                    <div class="form-row"><label>Sidebar Radius</label><div class="control"><input type="number" id="val_sidebarRadius" value="12"></div></div>
+                    <div class="form-row"><label>Button Radius</label><div class="control"><input type="number" id="val_btnRadius" value="6"></div></div>
+                    <div class="form-row"><label>Progress Radius</label><div class="control"><input type="number" id="val_progressRadius" value="6"></div></div>
+                    <div class="form-row"><label>Border Thick.</label><div class="control"><input type="number" id="val_borderWidth" value="10"></div></div>
+                    <div class="form-row checkbox-row"><input type="checkbox" id="val_shadow" checked><label>Show Sidebar Shadow</label></div>
+                </div>
+            </details>
 
             <!-- 5. LAYOUT -->
-            <h3>Layout</h3>
-            <div class="form-group">
-                <label>Mobile Form Position</label>
-                <select id="val_mobileSidebarPos">
-                    <option value="bottom" selected>Bottom (After text)</option>
-                    <option value="top">Top (Before text)</option>
-                </select>
-            </div>
-            <div class="form-group checkbox-group"><input type="checkbox" id="val_showMobileBtn"><label>Mobile Button "Go to sign"</label></div>
+            <details class="section-accordion">
+                <summary>Layout</summary>
+                <div class="accordion-content">
+                    <div class="form-row">
+                        <label>Mobile Position</label>
+                        <div class="control">
+                            <select id="val_mobileSidebarPos">
+                                <option value="bottom" selected>Bottom</option>
+                                <option value="top">Top</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row checkbox-row"><input type="checkbox" id="val_showMobileBtn"><label>Mobile Button "Go to sign"</label></div>
+                </div>
+            </details>
 
             <!-- 6. HIDE / SHOW -->
-            <h3>Hide / Show</h3>
-            <div class="form-group checkbox-group"><input type="checkbox" id="val_showTitle" checked><label>Show Petition Title</label></div>
-            <div class="form-group checkbox-group"><input type="checkbox" id="val_showH4" checked><label>Show Form Title (H4)</label></div>
-            <div class="form-group checkbox-group"><input type="checkbox" id="val_showInfo"><label>Show Action Info</label></div>
-            <div class="form-group checkbox-group"><input type="checkbox" id="val_showSosha"><label>Add Sosha Tracking Link</label></div>
-            
-            <hr style="width:100%; border:0; border-top:1px solid #ccc; margin: 10px 0;">
-            
-            <div class="form-group checkbox-group"><input type="checkbox" id="val_showFooter" checked><label>Show Footer</label></div>
-            <div class="form-group" id="footerTextGroup">
-                <label>Footer Text / HTML</label>
-                <textarea id="val_footerText" rows="3">© 2026 Your Organization. Add important info or link here.</textarea>
-            </div>
+            <details class="section-accordion">
+                <summary>Hide / Show</summary>
+                <div class="accordion-content">
+                    <div class="form-row checkbox-row"><input type="checkbox" id="val_showTitle" checked><label>Show Petition Title</label></div>
+                    <div class="form-row checkbox-row"><input type="checkbox" id="val_showH4" checked><label>Show Form Title (H4)</label></div>
+                    <div class="form-row checkbox-row"><input type="checkbox" id="val_showInfo"><label>Show Action Info</label></div>
+                    <div class="form-row checkbox-row"><input type="checkbox" id="val_showSosha"><label>Add Sosha Tracking</label></div>
+                    
+                    <hr style="width:100%; border:0; border-top:1px solid #e5e7eb; margin: 5px 0;">
+                    
+                    <div class="form-row checkbox-row"><input type="checkbox" id="val_showFooter" checked><label>Show Footer HTML</label></div>
+                    <div class="form-row col-layout" id="footerTextGroup">
+                        <label>Footer Content</label>
+                        <div class="control"><textarea id="val_footerText" rows="3">© 2026 Your Organization. All rights reserved.</textarea></div>
+                    </div>
+                </div>
+            </details>
 
-            <div class="copy-buttons">
+            <!-- BUTTONS -->
+            <div class="sidebar-footer">
                 <button id="btnCopyHeader">📋 Copy HEADER Code</button>
                 <button id="btnCopyFooter" class="footer-btn">📋 Copy FOOTER Code</button>
             </div>
         </div>
 
+        <!-- PREVIEW AREA -->
         <div class="preview-area">
             <div class="preview-header">
                 <strong>Live Preview</strong>
@@ -136,6 +179,27 @@
 
     <script src="assets/common.js"></script>
     <script>
+        // Sincronizzazione Color Picker e Input Hex (Stile UI)
+        document.querySelectorAll('.color-group').forEach(group => {
+            const colorIn = group.querySelector('input[type="color"]');
+            const hexIn = group.querySelector('input[type="text"]');
+            
+            colorIn.addEventListener('input', (e) => {
+                hexIn.value = e.target.value;
+                if(typeof window.updatePreview === 'function') window.updatePreview();
+            });
+            
+            hexIn.addEventListener('input', (e) => {
+                let val = e.target.value;
+                if(!val.startsWith('#')) val = '#' + val;
+                if(/^#[0-9A-F]{6}$/i.test(val)) {
+                    colorIn.value = val;
+                    if(typeof window.updatePreview === 'function') window.updatePreview();
+                }
+            });
+        });
+
+        // Generazione HEADER
         function generateHeaderCode(values) {
             const faviconHtml = values.favicon ? `<link rel="icon" href="${values.favicon}">` : '';
             const soshaHtml = values.showSosha ? `<script src="https://app.sosha.ai/tracker.min.js?platform=actionnetwork" data-reload="true"><\/script>` : '';
@@ -146,7 +210,7 @@
             const actionInfoDisplay = values.showInfo ? 'block' : 'none';
             const titleDisplay = values.showTitle ? 'block' : 'none';
             const h4Display = values.showH4 ? 'block' : 'none';
-            const shadowValue = values.shadow ? '0 2px 6px 0 rgba(0, 0, 0, 0.1), 0 2px 6px 0 rgba(0, 0, 0, 0.1)' : 'none';
+            const shadowValue = values.shadow ? '0 4px 15px 0 rgba(0, 0, 0, 0.08)' : 'none';
             
             const mobileSidebarOrder = values.mobileSidebarPos === 'top' ? '-1' : '99';
             const mobileSidebarMargin = values.mobileSidebarPos === 'top' ? '50px' : '0px';
@@ -209,19 +273,20 @@
 
         body { font-family: var(--body-font); font-weight: 400; font-style: normal; margin: 0; }
         
-        #gen_header { padding: 20px 0; background-color: var(--header-bg); }
+        #gen_header { padding: 25px 0; background-color: var(--header-bg); }
         #gen_header img { width: ${logoWidth} !important; height: ${logoHeight} !important; max-width: 100%; display: inline-block; }
         
-        .gen_wrapper { padding: 20px 20px; width: 1160px; max-width: 100%; margin: auto; box-sizing: border-box; background-color: var(--wrapper-bg); }
+        .gen_wrapper { padding: 40px 20px; width: 1160px; max-width: 100%; margin: auto; box-sizing: border-box; background-color: var(--wrapper-bg); }
         
         .gen_wrapper #can_embed_form input[type="submit"], .can_embed-html #can_embed_form input[type="submit"],
         .gen_wrapper #can_embed_form .button, .can_embed-html #can_embed_form .button,
         .gen_wrapper #donate_auto_modal input[type="submit"], .can_embed-html #donate_auto_modal input[type="submit"],
         .gen_wrapper #donate_auto_modal .button, .can_embed-html #donate_auto_modal .button {
             font-family: var(--heading-font) !important; background-color: var(--btn-color) !important; color: var(--btn-text-color) !important;
-            padding: 12px 15px !important; font-size: 18px !important; 
+            padding: 14px 15px !important; font-size: 18px !important; 
             font-weight: var(--btn-weight) !important; text-transform: var(--btn-transform) !important;
             border-radius: var(--btn-radius) !important; border: none !important;
+            transition: opacity 0.2s;
         }
         
         .gen_wrapper #can_embed_form input[type="submit"]:hover, .can_embed-html #can_embed_form input[type="submit"]:hover,
@@ -236,7 +301,7 @@
         .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix #can_main_col #action_info .action_owner_box { float: none; margin-right: 0; width: 100%; }
 
         @media (min-width: 768px) {
-            .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix, .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix { flex-flow: row nowrap; }
+            .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix, .gen_body > .gen_wrapper.layout--full #can_embed_form > .clearfix { flex-flow: row nowrap; gap: 4%; }
             .gen_body > .gen_wrapper.layout--reverse #can_embed_form > .clearfix #can_sidebar, .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix #can_sidebar { margin-left: auto; width: 48%; }
             .gen_body > .gen_wrapper.layout--equal #can_embed_form > .clearfix #can_main_col { width: 48%; margin-bottom: 0; }
             .can_embed #can_embed_form > .clearfix, .can_embed #can_embed_form > div > .clearfix { flex-flow: row nowrap; }
@@ -252,9 +317,10 @@
             font-family: var(--heading-font) !important; display: var(--title-display) !important; 
             font-weight: var(--title-weight) !important; text-transform: var(--title-transform) !important;
             color: var(--title-color) !important;
+            margin-top: 0; line-height: 1.2;
         }
         
-        .action_description, #can_main_col p { color: var(--desc-color) !important; }
+        .action_description, #can_main_col p { color: var(--desc-color) !important; line-height: 1.6; }
         
         #can_sidebar h4, .action_sidebar h4 { 
             font-family: var(--heading-font) !important; display: var(--h4-display) !important; color: var(--sidebar-h4-color) !important;
@@ -270,13 +336,14 @@
             border-bottom: solid var(--accent-color) var(--border-width) !important; box-shadow: var(--sidebar-shadow) !important; 
         }
         
-        .action_sidebar { padding: 1.5rem !important; }
+        .action_sidebar { padding: 2rem !important; }
         
         #can_embed_form .action_status_tracker .action_status_status_bar, .action_status_status_bar { 
-            background-color: var(--progress-bar-bg) !important; height: 20px !important; border-radius: var(--progress-radius) !important;
+            background-color: var(--progress-bar-bg) !important; height: 16px !important; border-radius: var(--progress-radius) !important;
+            margin-bottom: 10px !important;
         }
         span.action_status_status_bar-grow { 
-            background-color: var(--accent-color) !important; height: 20px !important; border-radius: var(--progress-radius) !important;
+            background-color: var(--accent-color) !important; height: 16px !important; border-radius: var(--progress-radius) !important;
         }
         .action_status_running_total { font-weight: 700 !important; }
 
@@ -297,9 +364,9 @@
 </head>
 <body class="gen_body">
     <div id="gen_header">
-        <div class="gen_wrapper" style="text-align: var(--logo-align); background-color: transparent;">
+        <div class="gen_wrapper" style="text-align: var(--logo-align); background-color: transparent; padding-top: 0; padding-bottom: 0;">
             <img src="${values.logo}" alt="Organization Logo"/> 
-            <h1 class="gen_name"></h1>
+            <h1 class="gen_name" style="display:none;"></h1>
         </div>
     </div>
     ${mobileBtnHtml}
@@ -312,7 +379,7 @@
             return `    <!-- END WIDGET -->
     </div> 
     
-    <div id="gen_footer" style="background-color: ${values.footerBg}; padding: 30px 20px; margin-top: 40px; text-align: center; font-family: var(--body-font); border-top: 1px solid #eaeaea; color: var(--desc-color);">
+    <div id="gen_footer" style="background-color: ${values.footerBg}; padding: 30px 20px; text-align: center; font-family: var(--body-font); border-top: 1px solid #eaeaea; color: var(--desc-color);">
         <div class="gen_wrapper" style="padding: 0; background-color: transparent; font-size: 14px;">
             ${values.footerText}
         </div>
@@ -322,6 +389,7 @@
         }
 
         function getValues() {
+            // Legge il valore dell'input color (il pallino) che è tenuto in sync con il testo
             return {
                 logo: document.getElementById('val_logo').value,
                 logoMode: document.getElementById('val_logoMode').value,
@@ -382,15 +450,15 @@
                         </div>
                         <div id="can_sidebar">
                             <div class="action_sidebar">
-                                <h4 style="margin-top:0">Sign the petition here</h4>
-                                <p style="font-size: 14px; margin-bottom: 15px;">Enter your details below.</p>
+                                <h4 style="margin-top:0; margin-bottom:15px;">Sign the petition here</h4>
+                                <p style="font-size: 14px; margin-bottom: 20px;">Enter your details below to add your name.</p>
                                 <input type="submit" value="Sign Now" style="cursor:pointer; width:100%;">
                                 <div class="action_status_tracker">
-                                    <div style="margin-top:20px; width:100%;" class="action_status_status_bar">
+                                    <div style="margin-top:25px; width:100%;" class="action_status_status_bar">
                                         <span class="action_status_status_bar-grow" style="display:block; width:50%;"></span>
                                     </div>
                                 </div>
-                                <a href="#" style="display:block; margin-top:10px;" class="action_status_running_total">1,500 Signatures reached!</a>
+                                <a href="#" style="display:block; margin-top:5px;" class="action_status_running_total">1,500 Signatures reached!</a>
                             </div>
                         </div>
                     </div>
@@ -406,8 +474,8 @@
                 const btn = document.getElementById('btnCopyFooter');
                 const originalText = btn.innerText;
                 btn.innerText = "✅ FOOTER Copied!";
-                btn.style.background = "#28a745";
-                setTimeout(() => { btn.innerText = originalText; btn.style.background = "#6c757d"; }, 2000);
+                btn.style.background = "#10b981"; // Verde successo
+                setTimeout(() => { btn.innerText = originalText; btn.style.background = ""; }, 2000);
             });
         });
     </script>
