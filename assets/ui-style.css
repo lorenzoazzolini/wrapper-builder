@@ -4,73 +4,189 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     display: flex;
-    flex-direction: column; /* Necessario per la Top Nav */
+    flex-direction: column;
     height: 100vh;
-    background-color: #f4f4f9;
+    background-color: #f3f4f6; /* Sfondo generale più neutro */
 }
 
-/* Nuova Barra di Navigazione */
+/* Barra di Navigazione */
 .top-nav {
-    background: #1a1a2e;
+    background: #111827;
     color: white;
     padding: 0 20px;
     height: 60px;
     display: flex;
     align-items: center;
     gap: 30px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     z-index: 10;
 }
-.top-nav .brand { font-size: 18px; font-weight: bold; letter-spacing: 1px; color: #fff; text-decoration: none; }
-.top-nav a.nav-link { color: #ccc; text-decoration: none; font-size: 14px; transition: color 0.2s; }
-.top-nav a.nav-link:hover { color: #1eaf90; }
+.top-nav .brand { font-size: 16px; font-weight: bold; letter-spacing: 1px; color: #fff; text-decoration: none; }
+.top-nav a.nav-link { color: #9ca3af; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+.top-nav a.nav-link:hover { color: #10b981; }
 
-/* Contenitore principale sotto la Nav */
+/* Contenitore principale */
 .app-main {
     display: flex;
     flex: 1;
     overflow: hidden;
 }
 
-/* Sidebar e Controlli */
+/* Nuova Sidebar Stile "Impostazioni" */
 .sidebar {
-    width: 380px;
+    width: 420px; /* Leggermente più larga per accomodare il layout inline */
     background: #ffffff;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    box-shadow: 1px 0 10px rgba(0,0,0,0.05);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+}
+.sidebar-header {
+    padding: 20px 20px 10px 20px;
+}
+.sidebar-header h2 { margin: 0; font-size: 20px; color: #111827; }
+
+/* Accordion (Menu espandibili) */
+details.section-accordion {
+    border-bottom: 1px solid #e5e7eb;
+}
+details.section-accordion[open] {
+    background-color: #f9fafb;
+}
+details.section-accordion summary {
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+    cursor: pointer;
+    list-style: none; /* Nasconde freccia default */
+    display: flex;
+    align-items: center;
+}
+details.section-accordion summary::-webkit-details-marker { display: none; }
+details.section-accordion summary::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid #6b7280;
+    border-bottom: 2px solid #6b7280;
+    transform: rotate(-45deg);
+    margin-right: 15px;
+    transition: transform 0.2s ease;
+}
+details.section-accordion[open] summary::before {
+    transform: rotate(45deg);
+}
+.accordion-content {
+    padding: 0 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Layout Riga Inline */
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 15px;
 }
-.sidebar h2 { margin-top: 0; font-size: 22px; color: #333; margin-bottom: 5px; }
-.sidebar h3 { font-size: 16px; color: #007bff; margin: 15px 0 5px 0; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-
-.form-group { display: flex; flex-direction: column; gap: 5px; }
-.form-group label { font-weight: bold; font-size: 13px; color: #555; }
-.form-group input[type="text"], .form-group input[type="number"], .form-group select, .form-group textarea {
-    padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; font-family: inherit;
+.form-row.col-layout {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
 }
-.form-group input[type="color"] { width: 100%; height: 35px; border: none; cursor: pointer; padding: 0; }
-.form-group.checkbox-group { flex-direction: row; align-items: center; gap: 10px; }
-.form-group.checkbox-group input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
-
-button {
-    padding: 12px; background: #007bff; color: white; border: none;
-    border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px;
-    margin-top: 20px; margin-bottom: 20px; transition: background 0.2s;
+.form-row label {
+    flex: 0 0 35%;
+    font-size: 13px;
+    color: #4b5563; /* Slate grey */
 }
-button:hover { background: #0056b3; }
+.form-row .control {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-width: 0; 
+}
+.form-row input[type="text"], 
+.form-row input[type="number"], 
+.form-row select, 
+.form-row textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 13px;
+    box-sizing: border-box;
+    font-family: inherit;
+    color: #111827;
+    background-color: #ffffff;
+}
+
+/* Color Picker Ibrido */
+.color-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 4px 10px;
+    background: white;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.color-group input[type="color"] {
+    width: 20px;
+    height: 20px;
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.color-group input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+.color-group input[type="color"]::-webkit-color-swatch { border: none; border-radius: 50%; box-shadow: 0 0 0 1px rgba(0,0,0,0.1) inset; }
+.color-group input[type="text"] {
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+/* Checkbox (interruttori in linea) */
+.form-row.checkbox-row {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.form-row.checkbox-row label { flex: none; cursor: pointer;}
+.form-row.checkbox-row input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
+
+/* Bottoni Sidebar */
+.sidebar-footer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.sidebar-footer button {
+    padding: 12px; background: #2563eb; color: white; border: none;
+    border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px;
+    transition: background 0.2s; margin: 0;
+}
+.sidebar-footer button:hover { background: #1d4ed8; }
+.sidebar-footer button.footer-btn { background-color: #6b7280; }
+.sidebar-footer button.footer-btn:hover { background-color: #4b5563; }
 
 /* Area Anteprima */
 .preview-area { flex: 1; display: flex; flex-direction: column; }
-.preview-header { padding: 15px 20px; background: #333; color: white; display: flex; justify-content: space-between; align-items: center; }
-.preview-header p { margin: 0; font-size: 14px; color: #ccc; }
-iframe { width: 100%; height: 100%; border: none; background: white; }
+.preview-header { padding: 15px 20px; background: #374151; color: white; display: flex; justify-content: space-between; align-items: center; }
+.preview-header p { margin: 0; font-size: 14px; color: #d1d5db; }
+iframe { width: 100%; height: 100%; border: none; background: transparent; }
 
-/* Griglia Index */
+/* Griglia Index (immutata) */
 .wrapper-grid { padding: 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
 .wrapper-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; transition: transform 0.2s; text-decoration: none; color: inherit; }
-.wrapper-card:hover { transform: translateY(-5px); border-bottom: 4px solid #1eaf90; }
-.wrapper-card h3 { margin-top: 0; color: #333; }
-.wrapper-card p { color: #666; font-size: 14px; }
+.wrapper-card:hover { transform: translateY(-5px); border-bottom: 4px solid #10b981; }
+.wrapper-card h3 { margin-top: 0; color: #111827; }
+.wrapper-card p { color: #6b7280; font-size: 14px; }
